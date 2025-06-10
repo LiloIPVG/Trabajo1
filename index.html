@@ -1,0 +1,15 @@
+
+{% extends 'layouts/default.html' %}
+
+{% block contenido %}
+<h1>Crea una tarea:</h1>
+<form action="/api/reminders" method="POST">
+    <p>Título:</p>
+    <input type="text" name="texto" required>
+    <p></p>
+    Importante:
+    <input type="checkbox" name="importante">
+    <p></p>
+    <button type="submit">Crear</button>
+</form>
+{% endblock %}

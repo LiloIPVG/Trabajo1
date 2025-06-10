@@ -1,0 +1,14 @@
+{% extends 'layouts/default.html' %}
+{% block contenido %}
+<h1>Edita la tarea N° {{ tarea.id }}:</h1>
+<form action="/api/reminders/{{ tarea.id }}" method="POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <p>Título:</p>
+    <input type="text" name="texto" value="{{ tarea.content }}" required>
+    <p></p>
+    Importante:
+    <input type="checkbox" name="importante" {% if tarea.important %}checked{% endif %}>
+    <p></p>
+    <button type="submit">Editar</button>
+</form>
+{% endblock %}

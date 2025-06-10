@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+    {% block contenido %}
+    {% endblock %}
+    <h1>Tareas</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tarea</th>
+            <th>Importante</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tarea in tareas %}
+        <tr>
+            <td>{{ tarea.id }}</td>
+            <td>{{ tarea.content }}</td>
+            <td>{% if tarea.important %}✅{% else %}❌{% endif %}</td>
+            <td><a href="/api/reminders/{{ tarea.id }}"><button>Editar Tarea</button></a></td>
+            <td><form action="/api/reminders/{{ tarea.id }}" method="POST" style="display:inline;">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit">Borrar Tarea</button>
+            </form></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
